@@ -1,15 +1,19 @@
-import dotenv from "dotenv"
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
-import chatsRoutes from "./routes/chatsRoutes.js"
+import chatsRoutes from "./routes/chatsRoutes.js";
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/", (req, res) => {
+  res.send("✅ Links API is running successfully!");
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/chats", chatsRoutes);
